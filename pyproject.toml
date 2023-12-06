@@ -1,0 +1,12 @@
+[project]
+name = "drf-project-template"
+version = "0.0.1"
+description = "Template for creating django rest framework project."
+authors = [
+    {name = "Tvo-Po", email = "maxwellgleb@gmail.com"},
+]
+dependencies = []
+requires-python = "~=3.11.0"
+readme = "README.md"
+license = {text = "MIT"}
+
