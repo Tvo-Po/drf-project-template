@@ -5,7 +5,11 @@ description = "Template for creating django rest framework project."
 authors = [
     {name = "Tvo-Po", email = "maxwellgleb@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+    "django~=4.2.0",
+    "djangorestframework~=3.14.0",
+    "cookiecutter~=2.5.0",
+]
 requires-python = "~=3.11.0"
 readme = "README.md"
 license = {text = "MIT"}
