@@ -29,6 +29,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'corsheaders',
+    'django_filters',
     'rest_framework',
 ]
 
@@ -102,8 +103,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 CORS_ORIGIN_ALLOW_ALL = env.bool('CORS_ORIGIN_ALLOW_ALL', default=True)
 CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST', default=[])
 CORS_ORIGIN_REGEX_WHITELIST = ['%r' % value for value in env.list('CORS_ORIGIN_REGEX_WHITELIST', default=[])]
 CORS_ALLOW_HEADERS = env.list('CORS_ALLOW_HEADERS', default=list(default_headers))
 CORS_ALLOW_METHODS = env.list('CORS_ALLOW_METHODS', default=list(default_methods))
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
