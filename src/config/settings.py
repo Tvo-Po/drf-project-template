@@ -1,15 +1,21 @@
 from pathlib import Path
 
+from corsheaders.defaults import default_headers, default_methods
+import environ
+
+
 SRC_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = SRC_DIR.parent
 
-SECRET_KEY = 'django-insecure-42yc@-(gst72-4yz$09pe)!ey!#jm+q^##7(co_5(ae9b^c%a^'
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(PROJECT_DIR / '.env')
 
-DEBUG = True
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env("DEBUG")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
-ALLOWED_HOSTS = []
-
-
-# Application definition
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -22,6 +28,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'corsheaders',
     'rest_framework',
 ]
 
@@ -35,7 +42,9 @@ INSTALLED_APPS = [
     *PROJECT_APPS,
 ]
 
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,10 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': SRC_DIR / 'db.sqlite3',
-    }
+    'default': env.db()
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -95,3 +101,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_ALLOW_ALL = env.bool('CORS_ORIGIN_ALLOW_ALL', default=True)
+CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST', default=[])
+CORS_ORIGIN_REGEX_WHITELIST = ['%r' % value for value in env.list('CORS_ORIGIN_REGEX_WHITELIST', default=[])]
+CORS_ALLOW_HEADERS = env.list('CORS_ALLOW_HEADERS', default=list(default_headers))
+CORS_ALLOW_METHODS = env.list('CORS_ALLOW_METHODS', default=list(default_methods))
