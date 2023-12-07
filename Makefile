@@ -46,4 +46,7 @@ run-static-tools: lint secure-check type-check
 .PHONY: startapp
 startapp:
 	@[ "${APP_NAME}" ] || ( echo ">> APP_NAME is not set"; exit 1 )
-	@$(PM_RUN) $(MANAGEPY_DEST) startapp $(APP_NAME)
+	@$(PM_RUN) $(MANAGEPY_DEST) startapp \
+		--template=https://github.com/Tvo-Po/drf-project-template/archive/app-template.zip \
+		--extension=md \
+		$(APP_NAME) 
