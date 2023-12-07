@@ -14,9 +14,11 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += [
+        path("__debug__/", include("debug_toolbar.urls")),
         path("api-auth/", include("rest_framework.urls")),
         path("api/openapi.json", SpectacularJSONAPIView.as_view(), name="schema-json"),
         path("api/openapi.yaml", SpectacularYAMLAPIView.as_view(), name="schema"),
         path("api/swagger-ui/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
         path("api/redoc/", SpectacularRedocView.as_view(), name="redoc"),
+        path("api/v1/test/", TestView.as_view()),
     ]
