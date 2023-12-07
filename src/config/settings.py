@@ -31,7 +31,9 @@ THIRD_PARTY_APPS = [
     "rest_framework",
 ]
 
-PROJECT_APPS = []
+PROJECT_APPS = [
+    "core",
+]
 
 INSTALLED_APPS = [
     *DJANGO_APPS,
