@@ -13,6 +13,32 @@ migrate:
 makemigrations:
 	@$(PM_RUN) $(MANAGEPY_DEST) makemigrations $(APP_NAMES)
 
+.PHONY: black
+black:
+	@$(PM_RUN) black src
+
+.PHONY: isort
+isort:
+	@$(PM_RUN) isort src
+
+.PHONY: ruff
+ruff:
+	@$(PM_RUN) ruff src --fix
+
+.PHONY: lint
+lint: black isort ruff
+
+.PHONY: secure-check
+secure-check:
+	@$(PM_RUN) bandit src -r
+
+.PHONY: type-check
+type-check:
+	@$(PM_RUN) mypy src
+
+.PHONY: run-static-tools
+run-static-tools: lint secure-check type-check
+
 .PHONY: startapp
 startapp:
 	@[ "${APP_NAME}" ] || ( echo ">> APP_NAME is not set"; exit 1 )
