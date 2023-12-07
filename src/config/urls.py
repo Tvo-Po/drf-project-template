@@ -20,5 +20,4 @@ if settings.DEBUG:
         path("api/openapi.yaml", SpectacularYAMLAPIView.as_view(), name="schema"),
         path("api/swagger-ui/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
         path("api/redoc/", SpectacularRedocView.as_view(), name="redoc"),
-        path("api/v1/test/", TestView.as_view()),
     ]

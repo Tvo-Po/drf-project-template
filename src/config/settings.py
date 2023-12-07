@@ -33,6 +33,7 @@ THIRD_PARTY_APPS = [
 
 PROJECT_APPS = [
     "core",
+    "users",
 ]
 
 INSTALLED_APPS = [
@@ -100,6 +101,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+AUTH_USER_MODEL = "users.CustomUser"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
@@ -127,5 +129,6 @@ SPECTACULAR_SETTINGS = {
 # for debug-toolbar in DRF
 if DEBUG:
     import socket
+
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
