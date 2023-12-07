@@ -1,4 +1,5 @@
 [project]
+# TODO: split to template and cookiecutter .toml
 name = "drf-project-template"
 version = "0.0.1"
 description = "Template for creating django rest framework project."
@@ -12,6 +13,7 @@ dependencies = [
     "django-environ~=0.11.2",
     "django-cors-headers~=4.3.1",
     "django-filter~=23.5",
+    "drf-spectacular~=0.26.5",
 ]
 requires-python = "~=3.11.0"
 readme = "README.md"
