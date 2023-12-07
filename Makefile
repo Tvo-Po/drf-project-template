@@ -5,6 +5,10 @@ MANAGEPY_DEST = src/manage.py
 runserver:
 	@$(PM_RUN) $(MANAGEPY_DEST) runserver
 
+.PHONY: shell
+shell:
+	@$(PM_RUN) $(MANAGEPY_DEST) shell -i ipython
+
 .PHONY: migrate
 migrate:
 	@$(PM_RUN) $(MANAGEPY_DEST) migrate $(MIGRATION) $(APP_NAMES)
