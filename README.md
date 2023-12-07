@@ -1,1 +1,1 @@
-# {{ camel_case_app_name }}
+# {{ camel_case_app_name }} App
