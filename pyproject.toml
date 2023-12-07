@@ -1,15 +1,13 @@
 [project]
-# TODO: split to template and cookiecutter .toml
-name = "drf-project-template"
+name = "{{ cookiecutter.name }}"
 version = "0.0.1"
-description = "Template for creating django rest framework project."
+description = "{{ cookiecutter.description }}"
 authors = [
-    {name = "Tvo-Po", email = "maxwellgleb@gmail.com"},
+    {name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}"},
 ]
 dependencies = [
     "django~=4.2.0",
     "djangorestframework~=3.14.0",
-    "cookiecutter~=2.5.0",
     "django-environ~=0.11.2",
     "django-cors-headers~=4.3.1",
     "django-filter~=23.5",

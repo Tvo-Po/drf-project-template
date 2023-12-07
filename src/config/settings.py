@@ -119,9 +119,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    # TODO: cookiecutter name + description
-    "TITLE": "Your Project API",
-    "DESCRIPTION": "Your project description",
+    "TITLE": "{{ cookiecutter.name }}",
+    "DESCRIPTION": "{{ cookiecutter.description }}",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
